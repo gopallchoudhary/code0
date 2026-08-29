@@ -59,10 +59,10 @@ export function Chai0Logo({ className, showWordmark = true }: Chai0LogoProps) {
 		>
 			<Chai0Mark className="h-7 w-auto" />
 			{showWordmark ? (
-				<span className="text-base font-semibold tracking-tight">Cook0</span>
+				<span className="text-base font-semibold tracking-tight">Code0</span>
 			) : null}
 		</span>
 	);
 }
 
-export { Chai0Mark };
+export { Chai0Mark, Chai0Logo as Code0Logo, Chai0Mark as Code0Mark };
