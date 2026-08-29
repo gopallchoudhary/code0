@@ -17,6 +17,7 @@ import type { ProjectFragment } from "@/features/projects/fragment-types";
 export default function FragmentWeb({ data }: { data: ProjectFragment }) {
 	const [fragmentKey, setFragmentKey] = useState(0);
 	const [copied, setCopied] = useState(false);
+	const sandboxUrl = data.sandboxUrl?.replace(/^http:\/\//i, "https://");
 
 	/**
 	 * Force the preview iframe to reload by changing its `key`.
@@ -29,7 +30,8 @@ export default function FragmentWeb({ data }: { data: ProjectFragment }) {
 	 * Copy the sandbox URL to the clipboard and briefly show a "Copied" state.
 	 */
 	function onCopy() {
-		navigator.clipboard.writeText(data.sandboxUrl);
+		if (!sandboxUrl) return;
+		navigator.clipboard.writeText(sandboxUrl);
 		setCopied(true);
 		setTimeout(() => {
 			setCopied(false);
@@ -53,10 +55,10 @@ export default function FragmentWeb({ data }: { data: ProjectFragment }) {
 						size="sm"
 						variant="outline"
 						onClick={onCopy}
-						disabled={!data.sandboxUrl || copied}
+						disabled={!sandboxUrl || copied}
 						className="flex-1 justify-start text-start font-normal"
 					>
-						<span className="truncate">{data.sandboxUrl}</span>
+						<span className="truncate">{sandboxUrl}</span>
 					</Button>
 				</Hint>
 
@@ -65,8 +67,8 @@ export default function FragmentWeb({ data }: { data: ProjectFragment }) {
 						size="sm"
 						variant="outline"
 						onClick={() => {
-							if (!data.sandboxUrl) return;
-							window.open(data.sandboxUrl, "_blank");
+							if (!sandboxUrl) return;
+							window.open(sandboxUrl, "_blank");
 						}}
 					>
 						<ExternalLink />
@@ -78,7 +80,7 @@ export default function FragmentWeb({ data }: { data: ProjectFragment }) {
 				className="h-full w-full"
 				sandbox="allow-scripts allow-same-origin"
 				loading="lazy"
-				src={data.sandboxUrl}
+				src={sandboxUrl}
 				title={data.title}
 			/>
 		</div>
