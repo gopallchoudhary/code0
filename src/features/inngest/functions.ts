@@ -3,11 +3,12 @@ import { Sandbox } from "@e2b/code-interpreter";
 import { inngest } from "./client";
 import { prisma } from "@/lib/db";
 import { MessageRole, MessageType } from "@/generated/prisma/enums";
-import { createAgent, createNetwork, createState, createTool, gemini } from "@inngest/agent-kit";
+import { createAgent, createNetwork, createState, createTool, gemini, openai } from "@inngest/agent-kit";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/lib/prompt";
 import z from 'zod'
 import { buffer } from "node:stream/consumers";
 import { agentOutputText, connectSandbox, lastAssistantTextMessageContent } from "./utils";
+
 
 
 export interface CodeAgentState {
@@ -80,11 +81,25 @@ export const codeAgentFunction = inngest.createFunction(
         } as Parameters<typeof gemini>[0]
         )
 
+        const openaiModel = openai({
+            model: "gpt-4o-mini",
+            step,
+            apiKey: process.env.OPENROUTER_API_KEY,
+            baseUrl: process.env.OPENROUTER_BASE_URL,
+            defaultParameters: {
+                generationConfig: {
+                    temperature: 0,
+                    maxOutputTokens: 8192,
+                    thinkingConfig: { thinkingBudget: 0 }
+                }
+            }
+        } as Parameters<typeof openai>[0])
+
         const codeAgent = createAgent({
             name: 'code-agent',
             description: 'An expert coding agent',
             system: PROMPT,
-            model: gemini({ model: 'gemini-3.6-flash' }),
+            model: openaiModel,
             tools: [
                 // 1.Terminal
                 createTool({
@@ -220,7 +235,7 @@ export const codeAgentFunction = inngest.createFunction(
 
 
 
-        const makeTextAgent = (name: string, system: string) => createAgent({ name, system, model: geminiModel })
+        const makeTextAgent = (name: string, system: string) => createAgent({ name, system, model: openaiModel })
 
         const fragmentTitleGenerator = makeTextAgent('fragment-title-generator', FRAGMENT_TITLE_PROMPT)
         const responseGenerator = makeTextAgent('response-generator', RESPONSE_PROMPT)
