@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: "Code0",
 	description: "Code0 - AI-powered development platform",
+	icons: {
+		icon: "/icon.svg",
+		shortcut: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({

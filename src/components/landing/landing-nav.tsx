@@ -8,11 +8,17 @@ export function LandingNav() {
 	return (
 		<header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-[#f7f4ed]/90 px-4 pt-4 backdrop-blur-sm dark:bg-background/70">
 			<nav className="flex h-12 w-full max-w-3xl items-center justify-between rounded-full border border-[rgba(28,28,28,0.14)] bg-[#fcfbf8] px-4 shadow-[rgba(0,0,0,0.05)_0px_1px_2px_0px] dark:border-border dark:bg-background/70 dark:shadow-none">
-				<Link href="/" className="flex items-center text-[#1c1c1c] dark:text-foreground">
+				<Link
+					href="/"
+					className="flex items-center text-[#1c1c1c] dark:text-foreground"
+				>
 					<Chai0Logo className="gap-2 text-[#1c1c1c] dark:text-foreground" />
 				</Link>
 				<div className="hidden items-center gap-6 text-sm text-[#1c1c1c] sm:flex dark:text-foreground">
-					<Link href="#templates" className="underline-offset-4 hover:underline">
+					<Link
+						href="#templates"
+						className="underline-offset-4 hover:underline"
+					>
 						Templates
 					</Link>
 					<Link href="#how" className="underline-offset-4 hover:underline">
