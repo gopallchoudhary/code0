@@ -7,10 +7,10 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 export function LandingNav() {
 	return (
 		<header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-[#f7f4ed]/90 px-4 pt-4 backdrop-blur-sm dark:bg-background/70">
-			<nav className="flex h-12 w-full max-w-3xl items-center justify-between rounded-full border border-[rgba(28,28,28,0.14)] bg-[#fcfbf8] px-4 shadow-[rgba(0,0,0,0.05)_0px_1px_2px_0px] dark:border-border dark:bg-background/70 dark:shadow-none">
+			<nav className="flex h-12 w-full max-w-3xl items-center gap-8 rounded-full border border-[rgba(28,28,28,0.14)] bg-[#fcfbf8] px-4 shadow-[rgba(0,0,0,0.05)_0px_1px_2px_0px] dark:border-border dark:bg-background/70 dark:shadow-none">
 				<Link
 					href="/"
-					className="flex items-center text-[#1c1c1c] dark:text-foreground"
+					className="flex shrink-0 items-center text-[#1c1c1c] dark:text-foreground"
 				>
 					<Chai0Logo className="gap-2 text-[#1c1c1c] dark:text-foreground" />
 				</Link>
@@ -25,7 +25,7 @@ export function LandingNav() {
 						How it works
 					</Link>
 				</div>
-				<div className="flex items-center gap-2">
+				<div className="ml-auto flex items-center gap-2">
 					<ModeToggle className="h-9 w-9 rounded-full border-[rgba(28,28,28,0.2)] bg-transparent text-[#1c1c1c] hover:bg-[rgba(28,28,28,0.04)] hover:text-[#1c1c1c] dark:border-border dark:text-foreground dark:hover:bg-muted dark:hover:text-foreground" />
 					<Link
 						href="/sign-in"
