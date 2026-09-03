@@ -20,16 +20,16 @@ export function LandingNav() {
 					</Link>
 				</div>
 				<div className="flex items-center gap-2">
-					<ModeToggle />
+					<ModeToggle className="h-9 w-9 rounded-full border-[rgba(28,28,28,0.2)] bg-transparent text-[#1c1c1c] hover:bg-[rgba(28,28,28,0.04)] hover:text-[#1c1c1c] dark:border-border dark:text-foreground dark:hover:bg-muted dark:hover:text-foreground" />
 					<Link
 						href="/sign-in"
-						className="rounded-md border border-[rgba(28,28,28,0.4)] bg-transparent px-4 py-2 text-sm text-[#1c1c1c] transition-opacity active:opacity-80 dark:border-border dark:text-foreground"
+						className="inline-flex h-9 items-center rounded-md border border-[rgba(28,28,28,0.2)] bg-transparent px-4 text-sm text-[#1c1c1c] transition-all hover:border-[rgba(28,28,28,0.4)] hover:bg-[rgba(28,28,28,0.04)] active:opacity-80 dark:border-border dark:text-foreground dark:hover:bg-muted"
 					>
 						Log in
 					</Link>
 					<Link
 						href="/sign-in"
-						className="rounded-md bg-[#1c1c1c] px-4 py-2 text-sm text-[#fcfbf8] transition-opacity active:opacity-80 dark:bg-primary dark:text-primary-foreground"
+						className="inline-flex h-9 items-center rounded-md bg-[#1c1c1c] px-4 text-sm text-[#fcfbf8] transition-opacity hover:opacity-90 active:opacity-80 dark:bg-primary dark:text-primary-foreground"
 						style={{
 							boxShadow:
 								"rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px",
